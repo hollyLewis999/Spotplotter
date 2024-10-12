@@ -162,6 +162,7 @@ def calculate_statistics(x, y, color, label):
     
     return None
 def plot_logarithmic_graph(y1, y2, y3, y4, title, key1, key2, key3, key4):
+
     dilutionSeries = [1, 2, 4, 8, 10, 16, 20, 32, 40, 64, 80, 100, 128, 160, 200, 320, 400, 640, 800, 1000, 1280, 1600, 2000, 3200, 4000, 6400, 8000, 12800, 16000, 32000, 64000, 128000]
     
     #normalisation value is the average of the first spot of the 2 non ATP
@@ -447,6 +448,15 @@ def generate_all_outputs(window):
     figB, statsB = plot_logarithmic_graph(window.image_info[0]['QuantificationB'], window.image_info[1]['QuantificationB'], window.image_info[2]['QuantificationB'], window.image_info[3]['QuantificationB'], window.image_info[0]['strainB'], window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
     figC, statsC = plot_logarithmic_graph(window.image_info[0]['QuantificationC'], window.image_info[1]['QuantificationC'], window.image_info[2]['QuantificationC'], window.image_info[3]['QuantificationC'], window.image_info[0]['strainC'], window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
 
+    print(window.image_info[0]['QuantificationA'])
+    print(window.image_info[1]['QuantificationA'])
+    print(window.image_info[2]['QuantificationA'])
+    print(window.image_info[3]['QuantificationA'])
+    print(window.image_info[0]['strainA'])
+    print(window.image_info[0]['filename'].split('.')[0])
+    print(window.image_info[1]['filename'].split('.')[0])
+    print(window.image_info[2]['filename'].split('.')[0])
+    print( window.image_info[3]['filename'].split('.')[0])
     #report
     output_filename = "growth_curves_report.pdf"
     write_image_info_to_file(window, figA, statsA, figB, statsB, figC, statsC, output_filename)

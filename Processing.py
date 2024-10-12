@@ -214,7 +214,7 @@ def detect_and_draw_circles(binary_image, gray_image, noClusters, min_radius=50,
     #keep trying to get the grid -TODO need to add a stop condition here
     while not grid_calculated:
         try:
-            grid_start_x, grid_start_y, cell_size = calculate_grid(x_coords, y_coords, width, height, binary_image, gray_image, debug=False)
+            grid_start_x, grid_start_y, cell_size = calculate_grid(x_coords, y_coords, width, height, binary_image, gray_image, debug=True)
             grid_calculated = True
         except ValueError as e:
             print(f"Error in grid calculation: {e}")
@@ -241,7 +241,7 @@ def detect_and_draw_circles(binary_image, gray_image, noClusters, min_radius=50,
 #  Y888P  88   YD Y888888P Y8888D' 
 # 
 
-def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_image, debug=False):
+def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_image, debug=True):
 
     def find_clusters(coords, min_count=2):
 
@@ -249,8 +249,12 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
         diffs = np.diff(sorted_coords)
         median_diff = np.median(diffs) #this is the difference between cluster = cell size
         #need to fiddle with the median_diffs, using median not mean becuse some differences will be double becuse there is an empty row/coloumn
-        threshold = max(median_diff *1.5,10) #otherwise if its perfect it threshold will be zero, this is taking out ones that are unrealistic
-
+        #TODO in future i should change this that if its getting too many clusters it should increase this
+        #TODO also what it sould do it be measuring the distance between clusters and clusters that are too close together should be joined as one cluster
+        threshold = max(median_diff *3,5) #otherwise if its perfect it threshold will be zero, this is taking out ones that are unrealistic
+        # print(median_diff)
+        # print(diffs)
+        # print(threshold)
         clusters = []
         current_cluster = [sorted_coords[0]]
         
