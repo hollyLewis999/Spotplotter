@@ -17,6 +17,7 @@ import time
 import math 
 import sys
 
+
 from Processing import *
 from outputs import *
 
@@ -371,8 +372,8 @@ def display_final_image(window, override =False):
         result_grid, marked_image, ordered_counts = detect_and_draw_circles(window.binarized_image, gray_image, False)
 
         #comment out later, for testing and report
-        # path = "C:/Users/ThinkPad/Documents/AA ACADEMIC 2024/Thesis/Tests/GroundTuth/TESTS/Cropped/RESULTS/"
-        # cv2.imwrite(path +window.current_info['filename']+ '_result.png', marked_image)   
+        path = "C:/Users/ThinkPad/Documents/AA ACADEMIC 2024/Thesis/Tests/GroundTuth/TESTS/Cropped/RESULTS/"
+        cv2.imwrite(path +window.current_info['filename']+ '_result.png', marked_image)   
         # # cv2.imshow("marked", resize_for_display(marked_image))
 
         #checking to see if the window has current into to avoid cracshing
