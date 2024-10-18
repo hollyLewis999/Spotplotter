@@ -14,6 +14,7 @@ import math
 from scipy import ndimage
 from scipy import stats
 COLOUMS = 12
+import seaborn as sns
 
 
 
@@ -127,8 +128,8 @@ def binarize(gray_image, original_image, contrast = 20,excludeSmallDots = 15, sh
     ############################################################################
     #CHANGE BACK LATER ONLY FOR TESTING GROUND TRUTH
     ############################################################################
-        # gray_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
-        # binary_image = cv2.threshold(gray_image, 175, 255, cv2.THRESH_BINARY)[1]
+    # gray_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
+    # binary_image = cv2.threshold(gray_image, 175, 255, cv2.THRESH_BINARY)[1]
     ############################################################################
 
     contour_img = original_image.copy()
@@ -147,9 +148,9 @@ def binarize(gray_image, original_image, contrast = 20,excludeSmallDots = 15, sh
     for cntr in contours:
         area = cv2.contourArea(cntr)
         if area > excludeSmallDots:
-            cv2.drawContours(contour_img, [cntr], 0, (0,255,255), 2)
+            cv2.drawContours(contour_img, [cntr], 0, (255, 105, 65), 2)
             cv2.drawContours(final_binary, [cntr], 0, 255, -1)
-
+            print("drawing")
 
     return binary_image, contour_img, final_binary,block_size
 
@@ -244,7 +245,9 @@ def detect_and_draw_circles(binary_image, gray_image, noClusters, min_radius=50,
 def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_image, debug=True):
 
     def find_clusters(coords, min_count=2):
-
+        FONT = "Microsoft New Tai Lue"
+        plt.rcParams['font.family'] = FONT
+        sns.set_style("whitegrid")
         sorted_coords = np.sort(coords)
         diffs = np.diff(sorted_coords)
         filtered_diff = diffs[(diffs > 0) & (diffs < 50)] #need to take out the huge and tiny differences
@@ -256,7 +259,7 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
             threshold = 2
         else:    
             threshold = max(median_diff *3,12) #otherwise if its perfect it threshold will be zero, this is taking out ones that are unrealistic
-            threshold = min(threshold, 30) #TODO i should make this based on the image width or based on how sparse everyhting is
+            threshold = min(threshold, 50) #TODO i should make this based on the image width or based on how sparse everyhting is
         print(median_diff)
         print(diffs)
         print(threshold)
@@ -278,8 +281,6 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
         if len(current_cluster) >= min_count:
             clusters.append(current_cluster)
 
-
-
         cluster_means = [np.mean(cluster) for cluster in clusters]
     
         #modal difference between cluster means - 
@@ -292,7 +293,6 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
             modal_diff = threshold
 
         print(f"Modal difference between cluster means: {modal_diff}")
-
 
         if (len(clusters) >5):
             #combine clusters that are too close to be together
@@ -313,13 +313,16 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
 
             final_cluster_means = [np.mean(cluster) for cluster in combined_clusters]
 
-            if debug:
+            if True:
+                plt.rcParams['text.usetex'] = False
+                plt.rcParams['font.family'] = 'serif'
+                plt.rcParams['font.serif'] = ['DejaVu Serif']
                 plt.figure(figsize=(12, 6))
-                plt.scatter(coords, [0] * len(coords), c='blue', label='Original points', alpha=0.5)
+                plt.scatter(coords, [0] * len(coords), c='#073B3A', label='Original points', alpha=0.5)
                 
 
                 for mean in cluster_means:
-                    plt.axvline(x=mean, color='red', linestyle='--', alpha=0.5)
+                    plt.axvline(x=mean, color='#D3784A', linestyle='--', alpha=0.5)
                 
 
                 for i, mean in enumerate(final_cluster_means):
@@ -331,9 +334,10 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
                     min_x = min(cluster_means[i] for i in group)
                     max_x = max(cluster_means[i] for i in group)
                     plt.axvspan(min_x, max_x, facecolor='yellow', alpha=0.3)
-                
+                  
                 plt.title('Clusters (Yellow highlight shows combined clusters)')
                 plt.legend()
+
                 plt.show()
                 
                 print(f"Number of original clusters: {len(clusters)}")
@@ -343,19 +347,24 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
             return final_cluster_means
         
         else:
-            return cluster_means
+            
 
-        # #Debug generated with chatGBT
-        # if debug:
-        #     plt.figure(figsize=(10, 5))
-        #     plt.scatter(coords, [0] * len(coords), c='blue', label='Original points')
-        #     print("Length coords: " + str(len(coords)))
-        #     for mean in cluster_means:
-        #         plt.axvline(x=mean, color='red', linestyle='--')
-        #     plt.title(f'Clusters')
-        #     plt.legend()
-        #     plt.show()
+            #Debug generated with chatGBT
+            if debug:
+                plt.rcParams['text.usetex'] = False
+                plt.rcParams['font.family'] = 'serif'
+                plt.rcParams['font.serif'] = ['DejaVu Serif']
+                plt.figure(figsize=(10, 5))
+                plt.scatter(coords, [0] * len(coords), c='#073B3A', label='Original points')
+                print("Length coords: " + str(len(coords)))
+                for mean in cluster_means:
+                    plt.axvline(x=mean, color='green', linestyle='--')
+                plt.title(f'Clusters')
+                plt.legend()
+                plt.show()
         
+
+            return cluster_means
         # 
 
 

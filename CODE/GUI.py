@@ -27,7 +27,7 @@ import openpyxl
 
 
 DARK = "#092934"
-LIGHT = "#FFFFFF"
+LIGHT = "#EFEFEF"
 # DARK = "#FFFFFF"
 # LIGHT = "#092934"
 GRAY = "#B0B0B0"
@@ -1387,7 +1387,7 @@ def display_images(window):
             contours, _ = cv2.findContours(img_gray, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             contour_img = img_np.copy()
             for cntr in contours:
-                cv2.drawContours(contour_img, [cntr], 0, (0, 0, 255), 2)
+                cv2.drawContours(contour_img, [cntr], 0, (255, 105, 65), 2)
             window.image_info[window.current_image_index]["IMGcontours"] = contour_img    
             window.current_info["IMGcontours"] = contour_img 
             # cv2.imshow("contours2345", resize_for_display(contour_img))
@@ -1558,7 +1558,7 @@ def initialize_window_attributes(window):
 
 #creating the frame with title and icon
 window = Tk()
-window.geometry("1440x1024")
+window.geometry("1440x1000")
 window.configure(bg=LIGHT)
 window.title("SpotPlotter")
 window.iconbitmap(r'C:\Users\ThinkPad\Documents\AA ACADEMIC 2024\Thesis\GUI\ICONS\ICON.ico')

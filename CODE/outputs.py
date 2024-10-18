@@ -20,7 +20,8 @@ import openpyxl
 
 
 
-
+DILUTIONSERIES = [1, 2, 4, 8, 10, 16, 20, 32, 40, 64, 80, 100, 128, 160, 200, 320, 400, 640, 800, 1000, 1280, 1600, 2000, 3200, 4000, 6400, 8000, 12800, 16000, 32000, 64000, 128000]
+    
 FONT = "Microsoft New Tai Lue"
 plt.rcParams['font.family'] = FONT
 sns.set_style("whitegrid")
@@ -58,8 +59,7 @@ def write_image_info_to_file(window, figA, statsA, figB, statsB, figC, statsC, p
     
 
     #in future this should be variable to account for different experiment values
-    dilutionSeries = [0, 2, 4, 8, 10, 16, 20, 32, 40, 64, 80, 100, 128, 160, 200, 320, 400, 640, 800, 1000, 1280, 1600, 2000, 3200, 4000, 6400, 8000, 12800, 16000, 32000, 64000, 128000]
-    
+
     headers = ["filename", "type", "detergent", "treatment", "repeat", "strain", "quantification", "fold_dilution", "normalization_value", "normalized_value"]
     ws.append(headers)
     #normalisation values is the average of the non ATP quantifications
@@ -75,7 +75,7 @@ def write_image_info_to_file(window, figA, statsA, figB, statsB, figC, statsC, p
         
 
         def add_strain_rows(strain, quant_list, norm_value):
-            for quant, dilution in zip(quant_list, dilutionSeries[:len(quant_list)]):
+            for quant, dilution in zip(quant_list, DILUTIONSERIES[:len(quant_list)]):
                 normalized_value = 100 * quant / norm_value if norm_value else None
                 row = base_row + [strain, quant, dilution, norm_value, normalized_value]
                 ws.append(row)
@@ -163,8 +163,6 @@ def calculate_statistics(x, y, color, label):
     return None
 def plot_logarithmic_graph(y1, y2, y3, y4, title, key1, key2, key3, key4):
 
-    dilutionSeries = [1, 2, 4, 8, 10, 16, 20, 32, 40, 64, 80, 100, 128, 160, 200, 320, 400, 640, 800, 1000, 1280, 1600, 2000, 3200, 4000, 6400, 8000, 12800, 16000, 32000, 64000, 128000]
-    
     #normalisation value is the average of the first spot of the 2 non ATP
     normValue = (y1[0] + y2[0]) / 2
     
@@ -191,13 +189,13 @@ def plot_logarithmic_graph(y1, y2, y3, y4, title, key1, key2, key3, key4):
 
 
     for y, color, marker, label, ATc in zip(y_data, colors, markers, labels, ATcs):
-        stats = calculate_statistics(dilutionSeries, y, color, label)
+        stats = calculate_statistics(DILUTIONSERIES, y, color, label)
         if stats is not None:
 
             statistics.append(stats)
             label = ATc + " (" + label + " )"  #atc label and then the plate name in brackets
-            sns.scatterplot(x=dilutionSeries, y=y, color=color, marker=marker, label=label, s=80)
-            x_fit = np.logspace(np.log10(min(dilutionSeries)), np.log10(max(dilutionSeries)), num=100)
+            sns.scatterplot(x=DILUTIONSERIES, y=y, color=color, marker=marker, label=label, s=80)
+            x_fit = np.logspace(np.log10(min(DILUTIONSERIES)), np.log10(max(DILUTIONSERIES)), num=100)
             y_fit = stats['slope'] * np.log10(x_fit) + stats['intercept']
             plt.plot(x_fit, y_fit, color=color, linestyle='--', label=("R² =" + str(round(stats['r_squared'], 3)) + "\n" + stats['formula'] + "\n")) #this is  a seperate plot plotting the line
     
