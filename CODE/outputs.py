@@ -11,7 +11,7 @@ from reportlab.lib.pagesizes import letter
 from io import BytesIO
 import cv2
 import sys
-#from PIL import Image 
+from PIL import Image 
 from datetime import datetime
 from tkinter import filedialog, simpledialog
 import os
@@ -442,23 +442,23 @@ def generate_pdf_report(window, figA, statsA, figB, statsB, figC, statsC, output
 
 def generate_all_outputs(window):
 
-    #plots and statistics from image info
-    # figA, statsA = plot_logarithmic_graph(window.image_info[0]['QuantificationA'], window.image_info[1]['QuantificationA'], window.image_info[2]['QuantificationA'], window.image_info[3]['QuantificationA'], window.image_info[0]['strainA'],window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
-    # figB, statsB = plot_logarithmic_graph(window.image_info[0]['QuantificationB'], window.image_info[1]['QuantificationB'], window.image_info[2]['QuantificationB'], window.image_info[3]['QuantificationB'], window.image_info[0]['strainB'], window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
-    # figC, statsC = plot_logarithmic_graph(window.image_info[0]['QuantificationC'], window.image_info[1]['QuantificationC'], window.image_info[2]['QuantificationC'], window.image_info[3]['QuantificationC'], window.image_info[0]['strainC'], window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
+    # plots and statistics from image info
+    figA, statsA = plot_logarithmic_graph(window.image_info[0]['QuantificationA'], window.image_info[1]['QuantificationA'], window.image_info[2]['QuantificationA'], window.image_info[3]['QuantificationA'], window.image_info[0]['strainA'],window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
+    figB, statsB = plot_logarithmic_graph(window.image_info[0]['QuantificationB'], window.image_info[1]['QuantificationB'], window.image_info[2]['QuantificationB'], window.image_info[3]['QuantificationB'], window.image_info[0]['strainB'], window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
+    figC, statsC = plot_logarithmic_graph(window.image_info[0]['QuantificationC'], window.image_info[1]['QuantificationC'], window.image_info[2]['QuantificationC'], window.image_info[3]['QuantificationC'], window.image_info[0]['strainC'], window.image_info[0]['filename'].split('.')[0], window.image_info[1]['filename'].split('.')[0], window.image_info[2]['filename'].split('.')[0],  window.image_info[3]['filename'].split('.')[0])
 
-    print(window.image_info[0]['QuantificationA'])
-    print(window.image_info[1]['QuantificationA'])
-    print(window.image_info[2]['QuantificationA'])
-    print(window.image_info[3]['QuantificationA'])
-    print(window.image_info[0]['strainA'])
-    print(window.image_info[0]['filename'].split('.')[0])
-    print(window.image_info[1]['filename'].split('.')[0])
-    print(window.image_info[2]['filename'].split('.')[0])
-    print( window.image_info[3]['filename'].split('.')[0])
-    #report
-    # output_filename = "growth_curves_report.pdf"
-    # write_image_info_to_file(window, figA, statsA, figB, statsB, figC, statsC, output_filename)
+    # print(window.image_info[0]['QuantificationA'])
+    # print(window.image_info[1]['QuantificationA'])
+    # print(window.image_info[2]['QuantificationA'])
+    # print(window.image_info[3]['QuantificationA'])
+    # print(window.image_info[0]['strainA'])
+    # print(window.image_info[0]['filename'].split('.')[0])
+    # print(window.image_info[1]['filename'].split('.')[0])
+    # print(window.image_info[2]['filename'].split('.')[0])
+    # print( window.image_info[3]['filename'].split('.')[0])
+    # report
+    output_filename = "growth_curves_report.pdf"
+    write_image_info_to_file(window, figA, statsA, figB, statsB, figC, statsC, output_filename)
     plt.close('all')
 
 

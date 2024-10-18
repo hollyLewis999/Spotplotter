@@ -87,7 +87,7 @@ def stretch_and_gray(original_image, show_images=False):
     lower_bound, upper_bound = analyze_tonal_range(original_image)
     stretched = skimage.exposure.rescale_intensity(original_image, in_range=(lower_bound, upper_bound), out_range=(0, 255)).astype(np.uint8)
     #setting contrast as a function of the streach
-    idealContrast = int(-0.1813*(upper_bound -lower_bound)+25.113)
+    idealContrast = int(-0.1813*(upper_bound -lower_bound)+27.113)
     idealContrast = max(idealContrast,2)
     idealContrast = min(idealContrast,20)
 
@@ -145,12 +145,13 @@ def binarize(gray_image, original_image, contrast = 20,excludeSmallDots = 15, sh
     excludeSmallDots
 
     #check if the area is big enough before drawing
+    #toDO check if this is needed its redrawing els wear
     for cntr in contours:
         area = cv2.contourArea(cntr)
         if area > excludeSmallDots:
             cv2.drawContours(contour_img, [cntr], 0, (255, 105, 65), 2)
             cv2.drawContours(final_binary, [cntr], 0, 255, -1)
-            print("drawing")
+            # print("drawing")
 
     return binary_image, contour_img, final_binary,block_size
 
@@ -215,7 +216,7 @@ def detect_and_draw_circles(binary_image, gray_image, noClusters, min_radius=50,
     #keep trying to get the grid -TODO need to add a stop condition here
     while not grid_calculated:
         try:
-            grid_start_x, grid_start_y, cell_size = calculate_grid(x_coords, y_coords, width, height, binary_image, gray_image, debug=True)
+            grid_start_x, grid_start_y, cell_size = calculate_grid(x_coords, y_coords, width, height, binary_image, gray_image, debug=False)
             grid_calculated = True
         except ValueError as e:
             print(f"Error in grid calculation: {e}")
@@ -242,7 +243,7 @@ def detect_and_draw_circles(binary_image, gray_image, noClusters, min_radius=50,
 #  Y888P  88   YD Y888888P Y8888D' 
 # 
 
-def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_image, debug=True):
+def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_image, debug=False):
 
     def find_clusters(coords, min_count=2):
         FONT = "Microsoft New Tai Lue"
@@ -313,7 +314,7 @@ def calculate_grid(x_coords, y_coords, width, height, binarized_image, gray_imag
 
             final_cluster_means = [np.mean(cluster) for cluster in combined_clusters]
 
-            if True:
+            if False:
                 plt.rcParams['text.usetex'] = False
                 plt.rcParams['font.family'] = 'serif'
                 plt.rcParams['font.serif'] = ['DejaVu Serif']
