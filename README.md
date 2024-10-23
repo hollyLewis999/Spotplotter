@@ -1,5 +1,5 @@
 <p align="center">
-<img src="LogoHorozontalDark" alt="Logo" style="width: 800px;" />
+<img src="LogoHorozontalDark.svg" alt="Logo" style="width: 800px;" />
  </p> 
 🔍 Image Processing Pipeline: The project developed a flexible, adaptive pipeline that preprocesses, segments, and post-processes images. Despite non-ideal images with lighting issues or cracks, the algorithm produced reliable segmentation and quantification results.
 
