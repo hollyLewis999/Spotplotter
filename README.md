@@ -11,6 +11,11 @@ SpotPlotter is an open-source tool designed for automated image analysis of micr
 
 💻 User-Friendly GUI: A simple and intuitive GUI was built, giving users control over the pipeline and allowing manual adjustments to refine results.
 
+Demos of the system can be found below:
+
+- [Sped Up Demo](https://www.dropbox.com/scl/fi/pd6gzh27kq58intsos2z0/DemoVideoPiepline-spedup.mp4?rlkey=uwv1jf1k7v9is5bwlip6rd57a&st=jci68loy&dl=0)
+- [Real Time Demo](https://www.dropbox.com/scl/fi/lsn9zhtibum6l2694825z/DemoVideoPiepline-removedloading.mp4?rlkey=hrywk3sildhd2m0dy4ze2ztop&st=7kav101t&dl=0)
+- [Tools Demo](https://www.dropbox.com/scl/fi/v7s39zokoz7pw2ialab4w/DemoVideoTools.mp4?rlkey=i5kep72a6ymk7q9vri5w0wv80&st=09tmp9rs&dl=0)
 
 ## 📄License 
 This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](./LICENSE.0) file for details.
@@ -21,7 +26,7 @@ This project was developed as part of a BSc (Eng) final year project, submitted 
 
 Special thanks to:
     Supervisor: **R. Verrinder**, for guidance and support throughout the project. <br />
-    Co-supervisor: **Dr. M. Mason**, for providing the dataset for developing SpotPlotter and offering incredible insight every step of the way.
+    Co-supervisor: **Dr. M. Mason**, for providing the dataset and offering incredible insight every step of the way.
     
 ## 📞Contact
 For any questions or support, feel free to contact: <br />
