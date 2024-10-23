@@ -23,6 +23,6 @@ Special thanks to:
     Supervisor: R. Verrinder, for guidance and support throughout the project.
     Co-supervisor: Dr. M. Mason, for providing the dataset for developing SpotPlotter and offering incredible insight every step of the way.
     
-##📞Contact
+## 📞Contact
 For any questions or support, feel free to contact:
 Holly Lewis: hollylewis540@gmail.com
