@@ -20,9 +20,8 @@ This project is licensed under the **GNU General Public License v3.0**. See the 
 This project was developed as part of a BSc (Eng) final year project, submitted in partial fulfillment of the requirements for the degree of Bachelor of Science in Electrical and Computer Engineering at the University of Cape Town, in October 2024.
 
 Special thanks to:
-    Supervisor: R. Verrinder, for guidance and support throughout the project.
-    
-    Co-supervisor: Dr. M. Mason, for providing the dataset for developing SpotPlotter and offering incredible insight every step of the way.
+    Supervisor: **R. Verrinder**, for guidance and support throughout the project.
+    Co-supervisor: **Dr. M. Mason**, for providing the dataset for developing SpotPlotter and offering incredible insight every step of the way.
     
 ## 📞Contact
 For any questions or support, feel free to contact:
