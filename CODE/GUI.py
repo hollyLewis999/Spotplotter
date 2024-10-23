@@ -392,9 +392,9 @@ def display_final_image(window, override =False):
         # print("TESTER INFORMATION:") 
         # print("_______________________________________________________________________")
         # print(window.current_info['filename'])
-        # print(ordered_counts["Strain 1"])    
-        # print(ordered_counts["Strain 2"])   
-        # print(ordered_counts["Strain 3"])   
+        print(ordered_counts["Strain 1"])    
+        print(ordered_counts["Strain 2"])   
+        print(ordered_counts["Strain 3"])   
 
     #make sure its the correct type
     if isinstance(marked_image, Image.Image):
@@ -1246,11 +1246,23 @@ def upload_txt_file(window):
 
 def upload_images(window):
     file_paths = filedialog.askopenfilenames(filetypes=[("Image files", "*.png *.jpg *.jpeg *.bmp *.gif")])
+
+    # Ensure file_paths exists and window is initialized properly
+    if file_paths:
+        window.image_paths = list(file_paths)  # Store all selected images
+        window.current_image_index = 0
+        load_current_image(window)  # Load the first image
+    else:
+        messagebox.showwarning("Warning", "No images were selected.")
+
+
+def upload_images_real(window):
+    file_paths = filedialog.askopenfilenames(filetypes=[("Image files", "*.png *.jpg *.jpeg *.bmp *.gif")])
    
    #check that there are filepaths and that everything is initilised
     if file_paths and hasattr(window, 'image_info'):
         window.image_paths = []
-        unmatched_filenames = []  # Collect unmatched filenames
+        unmatched_filenames = []  #collect unmatched filenames
 
         #this is looking at the seleted files and seeing if the names match the textfile
         for info in window.image_info:
