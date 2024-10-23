@@ -21,6 +21,7 @@ This project was developed as part of a BSc (Eng) final year project, submitted 
 
 Special thanks to:
     Supervisor: R. Verrinder, for guidance and support throughout the project.
+    
     Co-supervisor: Dr. M. Mason, for providing the dataset for developing SpotPlotter and offering incredible insight every step of the way.
     
 ## 📞Contact
