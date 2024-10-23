@@ -12,4 +12,11 @@
 💻 User-Friendly GUI: A simple and intuitive GUI was built, giving users control over the pipeline and allowing manual adjustments to refine results.
 
 ## 📄License 
-This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](./LICENSE.0) file for details.
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE.0) file for details.
+
+
+##📞Contact
+
+For any questions or support, feel free to contact:
+
+Holly Lewis: hollylewis540@gmail.com
