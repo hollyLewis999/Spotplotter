@@ -1243,20 +1243,19 @@ def upload_txt_file(window):
             window.current_info = None
 
 
+#For testing so i can upload anything
+# def upload_images(window):
+#     file_paths = filedialog.askopenfilenames(filetypes=[("Image files", "*.png *.jpg *.jpeg *.bmp *.gif")])
+
+#     if file_paths:
+#         window.image_paths = list(file_paths)
+#         window.current_image_index = 0
+#         load_current_image(window)
+#     else:
+#         messagebox.showwarning("Warning", "No images were selected.")
+
 
 def upload_images(window):
-    file_paths = filedialog.askopenfilenames(filetypes=[("Image files", "*.png *.jpg *.jpeg *.bmp *.gif")])
-
-    # Ensure file_paths exists and window is initialized properly
-    if file_paths:
-        window.image_paths = list(file_paths)  # Store all selected images
-        window.current_image_index = 0
-        load_current_image(window)  # Load the first image
-    else:
-        messagebox.showwarning("Warning", "No images were selected.")
-
-
-def upload_images_real(window):
     file_paths = filedialog.askopenfilenames(filetypes=[("Image files", "*.png *.jpg *.jpeg *.bmp *.gif")])
    
    #check that there are filepaths and that everything is initilised
